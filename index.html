@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>匠味 — 分子料理・創新餐飲</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Helvetica Neue', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      line-height: 1.8;
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 60%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+    .hero-content { position: relative; z-index: 1; padding: 2rem; }
+    .brand-mark { font-size: 5rem; font-weight: 200; letter-spacing: 0.3em; color: #ff6b35; margin-bottom: 0.5rem; }
+    .brand-name { font-size: 3.5rem; font-weight: 300; letter-spacing: 0.2em; margin-bottom: 1rem; }
+    .brand-tagline {
+      font-size: 1.2rem; font-weight: 300; color: #888; letter-spacing: 0.4em;
+      border-top: 1px solid #ff6b35; border-bottom: 1px solid #ff6b35;
+      display: inline-block; padding: 1rem 3rem; margin-bottom: 2rem;
+    }
+    .hero-cta {
+      display: inline-block; padding: 1rem 3rem; border: 1px solid #ff6b35;
+      color: #ff6b35; text-decoration: none; letter-spacing: 0.2em; transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    .hero-cta:hover { background: #ff6b35; color: #0a0a0a; }
+
+    section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .section-title {
+      text-align: center; font-size: 2rem; font-weight: 300; letter-spacing: 0.2em;
+      color: #ff6b35; margin-bottom: 3rem; position: relative;
+    }
+    .section-title::after {
+      content: ''; display: block; width: 40px; height: 1px; background: #ff6b35;
+      margin: 1rem auto 0;
+    }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .about-text h3 { font-size: 1.5rem; font-weight: 300; color: #ff6b35; margin-bottom: 1rem; }
+    .about-text p { color: #aaa; font-weight: 300; margin-bottom: 1rem; }
+    .about-image {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 1px solid #333;
+      filter: brightness(0.9);
+    }
+
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    }
+    .menu-item {
+      background: #111; border: 1px solid #222; padding: 2rem; text-align: center;
+      transition: border-color 0.3s;
+    }
+    .menu-item:hover { border-color: #ff6b35; }
+    .menu-item h4 { font-size: 1.1rem; font-weight: 300; color: #ff6b35; margin-bottom: 0.5rem; letter-spacing: 0.1em; }
+    .menu-item p { font-size: 0.85rem; color: #777; }
+    .menu-item .price { font-size: 1.2rem; color: #fff; margin-top: 1rem; font-weight: 300; }
+
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    }
+    .gallery-grid img {
+      width: 100%; aspect-ratio: 1; object-fit: cover; filter: brightness(0.8);
+      transition: filter 0.3s, transform 0.3s; border: 1px solid #222;
+    }
+    .gallery-grid img:hover { filter: brightness(1); transform: scale(1.05); }
+
+    .chef-section { background: #0d0d0d; }
+    .chef-content { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center; }
+    .chef-image {
+      width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%;
+      border: 2px solid #ff6b35;
+    }
+    .chef-text h3 { font-size: 1.8rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .chef-text .title { color: #ff6b35; font-weight: 300; margin-bottom: 1.5rem; letter-spacing: 0.2em; }
+    .chef-text p { color: #aaa; font-weight: 300; }
+
+    .cta-section { text-align: center; background: linear-gradient(135deg, #0a0a0a, #111); }
+    .cta-section h2 { font-size: 2rem; font-weight: 300; letter-spacing: 0.2em; margin-bottom: 1rem; }
+    .cta-section p { color: #888; margin-bottom: 2rem; }
+    .btn-reserve {
+      display: inline-block; padding: 1.2rem 4rem; background: #ff6b35; color: #0a0a0a;
+      text-decoration: none; letter-spacing: 0.2em; font-weight: 500; transition: all 0.3s;
+    }
+    .btn-reserve:hover { background: #ff8459; }
+
+    footer { padding: 4rem 2rem; text-align: center; border-top: 1px solid #1a1a1a; }
+    footer h3 { font-size: 1.5rem; font-weight: 200; letter-spacing: 0.3em; color: #ff6b35; margin-bottom: 1rem; }
+    footer p { color: #666; font-weight: 300; font-size: 0.85rem; }
+
+    @media (max-width: 768px) {
+      .brand-mark { font-size: 3rem; }
+      .brand-name { font-size: 2rem; }
+      .about-grid, .chef-content { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="brand-mark">匠味</div>
+      <h1 class="brand-name">TAKUMI</h1>
+      <p class="brand-tagline">MOLECULAR GASTRONOMY</p>
+      <br>
+      <a href="#about" class="hero-cta">探索味覺</a>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <h2 class="section-title">關於匠味</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <h3>科學與藝術的交會</h3>
+        <p>匠味 — 以分子料理技法重新詮釋食材的本質。我們將液態氮的極寒、球化的精密、泡沫的輕盈，注入每一道料理之中，創造出超越傳統的美食體驗。</p>
+        <p>每一道菜餚都是一場感官實驗，從視覺的驚豔到味蕾的顛覆，匠味帶領您踏上未曾想像的味覺旅程。</p>
+        <p style="color:#ff6b35;">★ 米其林概念廚房 · 每季更換菜單</p>
+      </div>
+      <img class="about-image" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Fine Dining Plating" onerror="this.style.display='none'">
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section>
+    <h2 class="section-title">當季菜單</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <h4>氮氣松露泡沫</h4>
+        <p>黑松露液態氮泡沫 · 帕瑪森脆片 · 榛果碎</p>
+        <div class="price">NT$ 880</div>
+      </div>
+      <div class="menu-item">
+        <h4>龍蝦晶球</h4>
+        <p>龍蝦濃湯球化 · 海膽醬汁 · 食用金箔</p>
+        <div class="price">NT$ 1,280</div>
+      </div>
+      <div class="menu-item">
+        <h4>煙燻鴨胸凝膠</h4>
+        <p>低溫慢煮鴨胸 · 櫻桃凝膠 · 山葵分子珍珠</p>
+        <div class="price">NT$ 980</div>
+      </div>
+      <div class="menu-item">
+        <h4>液態氮起司蛋糕</h4>
+        <p>瞬間凍結起司慕斯 · 覆盆子晶球 · 薄荷氮氣</p>
+        <div class="price">NT$ 680</div>
+      </div>
+      <div class="menu-item">
+        <h4>和牛膠囊三重奏</h4>
+        <p>A5 和牛膠囊 · 松露油封 · 海鹽分子薄片</p>
+        <div class="price">NT$ 1,580</div>
+      </div>
+      <div class="menu-item">
+        <h4>芒果魚子醬</h4>
+        <p>芒果球化魚子醬 · 椰奶泡沫 · 百香果凝膠</p>
+        <div class="price">NT$ 580</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section>
+    <h2 class="section-title">視覺饗宴</h2>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Molecular Gastronomy Dish" onerror="this.style.display='none'">
+      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Fine Dining Plating" onerror="this.style.display='none'">
+      <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600&q=80" alt="Michelin Star Dish" onerror="this.style.display='none'">
+      <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80" alt="Modern Plating Food" onerror="this.style.display='none'">
+    </div>
+  </section>
+
+  <!-- Chef -->
+  <section class="chef-section">
+    <h2 class="section-title">主廚介紹</h2>
+    <div class="chef-content">
+      <img class="chef-image" src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=600&q=80" alt="Chef" onerror="this.style.display='none'">
+      <div class="chef-text">
+        <h3>高橋 匠</h3>
+        <p class="title">EXECUTIVE CHEF / 創辦人</p>
+        <p>曾在東京、巴黎、巴塞隆納等米其林星級餐廳歷練，師承分子料理先驅。回台後創立匠味，以科學精神探索台灣食材的無限可能。堅信「料理是精準的詩意」— 每一毫克、每一秒、每一度，都是對完美的堅持。</p>
+        <p style="margin-top:1rem; color:#ff6b35;">El Bulli 實驗廚房研修 · 東京龍吟三年歷練</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>預約一場味覺探險</h2>
+    <p>僅接受預約 · 每席皆為 chef's table 體驗</p>
+    <a href="#" class="btn-reserve">立即預約</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3>匠味 TAKUMI</h3>
+    <p>台北市大安區味覺路 88 號 · 週二至週日 18:00－22:00</p>
+    <p style="margin-top:0.5rem;">© 2025 匠味 Takumi · Molecular Gastronomy</p>
+  </footer>
+
+</body>
+</html>
